@@ -1,166 +1,50 @@
+// Single source of truth for everything shown on the site.
+// Sources: résumé (LATEST/), GitHub READMEs (github.com/abi1010-git), LinkedIn projects.
+// Numbers here should be verifiable from the linked repo READMEs.
+// Project case studies live in ./projects.ts.
+
+import { liveCount } from "./projects";
+
 export const profile = {
   name: "Abhijith Aravind",
-  title: "Computer Science Undergraduate",
-  tagline:
-    "Data engineering, machine learning, and AI — turning data into intelligent, real-world systems.",
-  summary:
-    "Computer Science undergraduate at UC Santa Cruz with interests in machine learning, artificial intelligence, data engineering, and data science. Experienced in Python, applied ML, data pipelines, and cloud technologies through coursework, Kaggle competitions, and hands-on projects. Seeking data engineering and AI/ML internship opportunities to help build scalable, intelligent, data-driven systems.",
-  location: "San Francisco Bay Area, California",
+  firstName: "Abhijith",
+  title: "Computer Science @ UC Santa Cruz",
+  focus: ["Data Engineering", "AI / ML", "Software Engineering"],
+  headline: "I build data platforms and AI systems that hold up against real-world data.",
+  intro:
+    "CS undergraduate at UC Santa Cruz (expected June 2028). I ship end-to-end systems: ingestion pipelines over millions of public records, multi-agent AI that checks its own claims, and the tests and CI that keep them honest.",
+  availability: "Open to data engineering & AI/ML internships",
+  about: [
+    "I like problems where the data is messy and the answer has to be right. Most of my projects start with a real dataset or a real annoyance, like losing chess games to the same opening mistake over and over, and end as a deployed app with a test suite.",
+    "Lately that means agentic AI with guardrails: systems where the model can call tools and route its own work, but every claim it makes is checked against stored evidence before anyone sees it. On the data side, I care about idempotent ingestion, data-quality checks, and pipelines that are boring to re-run.",
+    "Outside code I'm a US Chess Federation rated player, a former SAT tutor, and I play basketball.",
+  ],
+  location: "San Francisco Bay Area",
   photo: "/abhi-photo.jpg",
 };
 
 export const links = {
   github: "https://github.com/abi1010-git",
   linkedin: "https://www.linkedin.com/in/abhijith-aravind-6a8492394/",
-  kaggle: "https://www.kaggle.com/",
+  kaggle: "https://www.kaggle.com/abhijitharavind",
   chess: "https://ratings.uschess.org/player/15930356",
 };
 
 export const socials: { label: string; href: string }[] = [
-  { label: "GitHub", href: links.github },
   { label: "LinkedIn", href: links.linkedin },
-  { label: "US Chess", href: links.chess },
+  { label: "GitHub", href: links.github },
+  { label: "Kaggle", href: links.kaggle },
 ];
 
-export const stats: { value: string; label: string }[] = [
-  { value: "15+", label: "Kaggle competitions" },
-  { value: "Top 1%", label: "Best finish · 15 / 1,908" },
-  { value: "1540", label: "SAT score" },
-  { value: "1593", label: "US Chess rating" },
+export type Metric = { value: string; label: string };
+
+// Hero proof strip. Keep each claim traceable to a repo or the résumé.
+export const proof: Metric[] = [
+  { value: "2.49M", label: "real crash records in a pipeline I built" },
+  { value: "5-agent", label: "LangGraph system, deployed" },
+  { value: "Top 1%", label: "Kaggle finish · 15th of 1,908" },
+  { value: `${liveCount}`, label: "apps live right now" },
 ];
-
-export const highlights: string[] = [
-  "Applied ML",
-  "Ensemble Modeling",
-  "Data Pipelines",
-  "Cloud Analytics",
-];
-
-export const skillGroups: { label: string; items: string[] }[] = [
-  {
-    label: "Languages",
-    items: ["Python", "Java", "C / C++", "SQL"],
-  },
-  {
-    label: "Data Engineering",
-    items: [
-      "ETL / Data Pipelines",
-      "DuckDB",
-      "Data Modeling",
-      "Feature Engineering",
-      "AWS (S3, EC2)",
-    ],
-  },
-  {
-    label: "Machine Learning",
-    items: [
-      "Scikit-learn",
-      "Pandas / NumPy",
-      "Statistical Modeling",
-      "Regression",
-      "Classification",
-    ],
-  },
-  {
-    label: "Analytics & Visualization",
-    items: ["Tableau", "Power BI", "Matplotlib", "Jupyter Notebook"],
-  },
-];
-
-export type Project = {
-  name: string;
-  blurb: string;
-  tags: string[];
-  href: string;
-  live?: string;
-  platform?: string;
-};
-
-// Featured projects sourced from GitHub (github.com/abi1010-git).
-// Projects with a `live` URL are deployed and surfaced as launch cards.
-export const projects: Project[] = [
-  {
-    name: "csv-to-duckdb",
-    blurb:
-      "Upload CSV files into a DuckDB database and run SQL queries across multiple CSV tables together in one place.",
-    tags: ["Python", "DuckDB", "SQL"],
-    href: "https://github.com/abi1010-git/csv-to-duckdb",
-    live: "https://csv-to-duckdb.streamlit.app/",
-    platform: "Streamlit",
-  },
-  {
-    name: "FloraVision AI",
-    blurb:
-      "Upload a photo of any plant and get a concise, AI-generated description of the flora in seconds.",
-    tags: ["Python", "Computer Vision", "AI"],
-    href: "https://github.com/abi1010-git/ai-flora-identifier",
-    live: "https://floravisionai.streamlit.app/",
-    platform: "Streamlit",
-  },
-  {
-    name: "AI Video Highlighter",
-    blurb:
-      "Automatically detects and surfaces the important moments in a video to speed up review and editing.",
-    tags: ["Python", "ML", "Video"],
-    href: "https://github.com/abi1010-git/ai-video-highlighter",
-    live: "https://aivideohighlighter.streamlit.app/",
-    platform: "Streamlit",
-  },
-  {
-    name: "Traffic Accident Analyzer",
-    blurb:
-      "Explores accident datasets to detect high-risk patterns and surface insights on location, time, and severity.",
-    tags: ["Python", "Data Analytics", "Pandas"],
-    href: "https://github.com/abi1010-git/traffic_accident_project",
-    live: "https://analyzetrafficaccidentdata.streamlit.app/",
-    platform: "Streamlit",
-  },
-  {
-    name: "Lichess Opening Trainer",
-    blurb:
-      "A chess opening trainer that helps players drill and memorize opening lines through guided practice.",
-    tags: ["Python", "Chess", "Web App"],
-    href: "https://github.com/abi1010-git/Opening-Trainer",
-    live: "https://lichess-opening-trainer.onrender.com/",
-    platform: "Render",
-  },
-  {
-    name: "AppData Cleanup Assistant",
-    blurb:
-      "Scans a Windows machine to find apps still consuming disk space via temp and AppData folders, helping reclaim storage.",
-    tags: ["Python", "Utilities"],
-    href: "https://github.com/abi1010-git/windows-appdata-cleanup-assistant",
-  },
-];
-
-export const liveApps = projects.filter((p) => p.live);
-
-export type Achievement = {
-  title: string;
-  detail: string;
-};
-
-export const kaggle: { summary: string; achievements: Achievement[] } = {
-  summary:
-    "Participated in 15+ machine learning competitions involving predictive analytics, feature engineering, and ensemble modeling.",
-  achievements: [
-    {
-      title: "Top 1% — Binary Prediction of Smoker Status (15 / 1,908 teams)",
-      detail:
-        "Built ensemble classification pipelines with advanced feature engineering and probability calibration.",
-    },
-    {
-      title: "NeurIPS 2023 — Machine Unlearning",
-      detail:
-        "Explored privacy-preserving unlearning techniques balancing data-removal fidelity with retained model accuracy.",
-    },
-    {
-      title: "Google — AI Runtime Prediction",
-      detail:
-        "Built graph- and layout-aware regression models to predict AI compiler runtime and optimization performance.",
-    },
-  ],
-};
 
 export type Experience = {
   role: string;
@@ -168,41 +52,43 @@ export type Experience = {
   location: string;
   period: string;
   points: string[];
+  current?: boolean;
+  group: "Technical" | "Leadership & Community";
 };
 
+// Mirrors the résumé (LATEST/). Keep wording in sync when the résumé changes.
 export const experience: Experience[] = [
   {
-    role: "Data Science Enthusiast",
-    org: "Kaggle Competitions",
-    location: "Remote",
-    period: "Feb 2023 — Present",
+    role: "Programmer",
+    org: "BananaBots, UC Santa Cruz",
+    location: "Santa Cruz, CA",
+    period: "Oct 2026 — Present",
+    current: true,
+    group: "Technical",
     points: [
-      "Competed in 15+ ML competitions spanning predictive analytics, feature engineering, and ensemble modeling.",
-      "Achieved a Top 1% finish (15/1,908 teams) in a binary classification challenge.",
+      "Rebuilt Overjoyed for Jett Foundation using C#/.NET MAUI, supporting alternative input methods and accessible game controls.",
+      "Developed modular control configurations and remote multiplayer for up to four participants; collaborated on mouse-only, eye-gaze and screen-reader usability.",
     ],
   },
   {
-    role: "Independent Technical Projects",
-    org: "GitHub · @abi1010-git",
+    role: "Competitive Machine Learning",
+    org: "Kaggle",
     location: "Remote",
-    period: "Jun 2023 — Present",
+    period: "Feb 2023 — Present",
+    current: true,
+    group: "Technical",
     points: [
-      "Built csv-to-duckdb — load CSV files into a DuckDB database and query across multiple CSV tables together with SQL.",
-      "Created ai-flora-identifier, a web app returning AI-generated descriptions of plants from user-uploaded photos.",
-      "Developed ai-video-highlighter to automatically detect and surface the important moments in a video.",
-      "Built a traffic-accident pattern analysis project (Jupyter, Pandas) detecting high-risk patterns by location, time, and severity.",
-      "Created Opening-Trainer, a chess opening trainer for drilling and memorizing opening lines.",
-      "Built a Windows AppData cleanup assistant that scans for apps consuming disk space via temp and AppData folders.",
+      "Ranked 15th of 1,908 teams (top 1%) in smoker-status prediction using ensembles, feature engineering and probability calibration; participated in 15+ ML challenges.",
     ],
   },
   {
     role: "SAT Boot Camp Tutor",
-    org: "Schoolhouse.world (Khan Academy Affiliate)",
+    org: "Schoolhouse.world",
     location: "Remote",
-    period: "Jun 2023 — Sept 2024",
+    period: "Jun 2023 — Sep 2024",
+    group: "Leadership & Community",
     points: [
-      "Led virtual SAT sessions covering math, verbal reasoning, and test strategy, drawing on a personal 1540 score.",
-      "Mentored students through personalized instruction and guided practice exams.",
+      "Led virtual SAT math and verbal reasoning sessions for small groups.",
     ],
   },
   {
@@ -210,17 +96,39 @@ export const experience: Experience[] = [
     org: "Hiller Aviation Museum",
     location: "San Carlos, CA",
     period: "Jun 2022 — Jun 2024",
+    group: "Leadership & Community",
     points: [
-      "Supported STEM outreach through interactive aviation and science demonstrations.",
-      "Facilitated visitor engagement via VR aviation experiences and invention-lab activities.",
+      "Facilitated STEM outreach, aviation demonstrations and invention-lab activities.",
     ],
+  },
+];
+
+export const skillGroups: { label: string; items: string[] }[] = [
+  {
+    label: "Languages",
+    items: ["Python", "SQL", "C", "C++", "C#", "Java", "JavaScript", "TypeScript"],
+  },
+  {
+    label: "Data Engineering & Databases",
+    items: ["PySpark", "Parquet", "Pandas", "NumPy", "PostgreSQL", "DuckDB", "SQLite", "SQLAlchemy", "Data ingestion", "Validation", "Query benchmarking"],
+  },
+  {
+    label: "AI & Machine Learning",
+    items: ["LangGraph", "LangChain", "Gemini API", "Scikit-learn", "Hugging Face Transformers", "CLIP", "Whisper", "Feature engineering", "Model evaluation"],
+  },
+  {
+    label: "Software Engineering",
+    items: ["React", "FastAPI", "Flask", "Streamlit", "REST APIs", ".NET MAUI", "Accessibility testing", "Multiplayer development"],
+  },
+  {
+    label: "Tools & Visualization",
+    items: ["Git", "Docker", "Docker Compose", "GitHub Actions", "pytest", "Tableau", "Power BI", "Matplotlib", "AWS S3 & EC2 (exploratory)"],
   },
 ];
 
 export type Education = {
   school: string;
   credential: string;
-  location: string;
   period: string;
   detail?: string;
 };
@@ -229,46 +137,35 @@ export const education: Education[] = [
   {
     school: "University of California, Santa Cruz",
     credential: "B.S. Computer Science",
-    location: "Santa Cruz, CA",
-    period: "Sept 2024 — Present",
+    period: "Expected June 2028",
     detail:
-      "Coursework: Data Structures & Algorithms, Computer Architecture, Probability Theory, Statistical Methods, Human-Centered AI, C Systems Programming.",
+      "Data Structures & Algorithms · Computer Systems · Computer Architecture · Human-Centered AI · Probability Theory and Statistical Methods",
   },
   {
-    school: "University of California, Berkeley",
-    credential: "Pre-College Scholars Track",
-    location: "Berkeley, CA",
-    period: "Jun 2023 — Aug 2023",
-    detail: "Completed undergraduate-level Probability and Statistics for Business.",
+    school: "UC Berkeley",
+    credential: "Pre-College Scholars: Probability and Statistics for Business",
+    period: "Aug 2023",
   },
   {
     school: "Brigham Young University",
-    credential: "Dual Enrollment",
-    location: "Provo, UT",
-    period: "Aug 2022 — Jun 2023",
-    detail: "College-level Calculus coursework completed during high school.",
+    credential: "Dual Enrollment: college-level calculus",
+    period: "Jan 2023",
   },
 ];
 
-export const chess = {
-  regular: 1593,
-  quick: 1234,
-  onlineBlitz: 1710,
-  note: "US Chess Federation rated player (Member ID 15930356).",
-};
-
-export const interests = [
-  "US Chess Federation rated player",
-  "Basketball & team-based athletics",
-  "STEM mentoring & SAT tutoring",
+export const achievements: Metric[] = [
+  { value: "15 / 1,908", label: "Kaggle competition (top 1%)" },
+  { value: "1540", label: "SAT" },
+  { value: "15+", label: "Kaggle ML challenges" },
+  { value: "1593", label: "US Chess Federation rating" },
 ];
 
+// Résumé "Additional Achievements" items that aren't numbers.
+export const extracurriculars = ["Crypto Club leader", "Competitive Coding Club presenter"];
+
 export const navItems = [
-  { label: "About", href: "#about" },
-  { label: "Skills", href: "#skills" },
-  { label: "Apps", href: "#projects" },
-  { label: "Kaggle", href: "#kaggle" },
-  { label: "Experience", href: "#experience" },
-  { label: "Education", href: "#education" },
-  { label: "Contact", href: "#contact" },
+  { label: "Work", href: "/work" },
+  { label: "Experience", href: "/#experience" },
+  { label: "Skills", href: "/#skills" },
+  { label: "About", href: "/#about" },
 ];

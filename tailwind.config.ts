@@ -6,34 +6,46 @@ export default {
     extend: {
       colors: {
         ink: {
-          DEFAULT: "#1a1a1a",
-          soft: "#444444",
-          muted: "#6b7280",
+          DEFAULT: "#0c0d10",
+          soft: "#3b3e46",
+          muted: "#6b6f78",
         },
         accent: {
-          DEFAULT: "#2563eb",
-          soft: "#dbeafe",
+          DEFAULT: "#c2410c",
+          bright: "#f97316",
+          soft: "#ffedd5",
         },
-        paper: "#fafaf9",
+        paper: {
+          DEFAULT: "#f6f5f1",
+          raised: "#ffffff",
+        },
+        night: {
+          DEFAULT: "#0c0d10",
+          raised: "#16181d",
+          line: "#2a2d34",
+        },
       },
       fontFamily: {
-        sans: ["var(--font-inter)", "system-ui", "sans-serif"],
+        sans: ["var(--font-sans)", "system-ui", "sans-serif"],
         mono: ["var(--font-mono)", "ui-monospace", "monospace"],
+        serif: ["var(--font-serif)", "Georgia", "serif"],
       },
       maxWidth: {
-        content: "72rem",
+        content: "76rem",
       },
       keyframes: {
         "fade-up": {
-          "0%": { opacity: "0", transform: "translateY(12px)" },
+          "0%": { opacity: "0", transform: "translateY(14px)" },
           "100%": { opacity: "1", transform: "translateY(0)" },
+        },
+        pulse_dot: {
+          "0%, 100%": { opacity: "1" },
+          "50%": { opacity: "0.35" },
         },
       },
       animation: {
-        "fade-up": "fade-up 0.6s ease-out both",
-      },
-      backgroundImage: {
-        grid: "linear-gradient(to right, rgba(0,0,0,0.04) 1px, transparent 1px), linear-gradient(to bottom, rgba(0,0,0,0.04) 1px, transparent 1px)",
+        "fade-up": "fade-up 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) both",
+        "pulse-dot": "pulse_dot 2s ease-in-out infinite",
       },
     },
   },
